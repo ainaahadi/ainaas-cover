@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PulseWave - Music App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="app-badge" aria-label="PulseWave">PW</div>
+      <nav class="nav">
+        <button class="nav-btn active" data-view="home" aria-label="Home">
+          <span class="icon">🏠</span><span class="label">Home</span>
+        </button>
+      </nav>
+      <div class="divider"></div>
+      <div class="side-actions">
+      </div>
+      <div class="playlist-section">
+        <div class="section-title">Playlists</div>
+        <div id="playlistList" class="playlist-list" role="list"></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="search">
+          <span class="icon">🔎</span>
+          <input id="searchInput" type="text" placeholder="What do you want to play?" aria-label="Search" />
+        </div>
+        <button class="user-chip" aria-label="Profile">Ainaa</button>
+      </header>
+
+      <section id="playlistHeader" class="playlist-header">
+        <div class="playlist-cover" id="playlistCover"></div>
+        <div class="playlist-meta">
+          <small class="eyebrow">Public Playlist</small>
+          <h1 id="playlistTitle">Playlist</h1>
+          <p id="playlistSubtitle">Curated by Ainaa</p>
+          <p class="meta-line" id="playlistInfo"></p>
+        </div>
+      </section>
+
+      <section class="controls-row">
+        <button id="mainPlayBtn" class="play-btn" aria-label="Play">
+          <span id="mainPlayIcon">▶</span>
+        </button>
+        <button id="shuffleBtn" class="control-btn" aria-label="Shuffle">Shuffle</button>
+        <button id="shareBtn" class="control-btn" aria-label="Share">Share</button>
+      </section>
+
+      <section class="track-table">
+        <div class="table-head">
+          <div>#</div>
+          <div>Title</div>
+          <div>Album</div>
+          <div>Duration</div>
+          <div>Play</div>
+        </div>
+        <div id="trackList" class="track-list"></div>
+        <div id="emptyState" class="empty-state" hidden>No results found.</div>
+      </section>
+    </main>
+  </div>
+
+  <aside id="queueDrawer" class="queue-drawer" aria-label="Queue" aria-hidden="true">
+    <div class="queue-header">
+      <h3>Up Next</h3>
+      <button id="closeQueueBtn" aria-label="Close queue">✕</button>
+    </div>
+    <div id="queueList" class="queue-list"></div>
+  </aside>
+
+  <div class="player-bar">
+    <div class="player-left">
+      <div class="mini-cover" id="playerCover"></div>
+      <div class="player-meta">
+        <div id="playerTitle">Select a track</div>
+        <div id="playerArtist" class="muted">—</div>
+      </div>
+      <button id="playerLikeBtn" class="icon-btn" aria-label="Like">❤</button>
+    </div>
+    <div class="player-center">
+      <div class="transport">
+        <button id="prevBtn" class="icon-btn" aria-label="Previous">⏮</button>
+        <button id="playPauseBtn" class="icon-btn play" aria-label="Play">▶</button>
+        <button id="nextBtn" class="icon-btn" aria-label="Next">⏭</button>
+        <button id="repeatBtn" class="icon-btn" aria-label="Repeat">🔁</button>
+      </div>
+      <div class="timeline">
+        <span id="currentTime">0:00</span>
+        <input id="seekBar" type="range" min="0" max="100" value="0" aria-label="Seek" />
+        <span id="duration">0:00</span>
+      </div>
+    </div>
+    <div class="player-right">
+      <button id="queueBtn" class="icon-btn" aria-label="Queue">☰</button>
+      <button id="muteBtn" class="icon-btn" aria-label="Mute">🔊</button>
+      <input id="volumeBar" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
+    </div>
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

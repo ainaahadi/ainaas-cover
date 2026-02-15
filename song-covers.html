@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ainaa Hadi - Song Covers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0c;
+      --panel: #121214;
+      --panel-2: #1a1a1f;
+      --muted: #a1a1aa;
+      --text: #f7f7fb;
+      --accent: #1ed760;
+      --accent-soft: rgba(30, 215, 96, 0.18);
+      --line: #2a2a33;
+      --shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(91, 55, 255, 0.25), transparent 60%),
+                  radial-gradient(900px 520px at 80% 0%, rgba(255, 105, 180, 0.2), transparent 58%),
+                  var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", system-ui, sans-serif;
+      min-height: 100vh;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: #0f0f12;
+      border-right: 1px solid #14141a;
+      padding: 18px 10px;
+      display: grid;
+      align-content: start;
+      gap: 16px;
+    }
+
+    .side-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #ff7ad9, #6dd3ff);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: #111;
+      margin: 0 auto 6px;
+    }
+
+    .side-btn {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto;
+      border-radius: 14px;
+      background: #17171d;
+      border: 1px solid #1f1f27;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .main {
+      padding: 18px 26px 90px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #17171d;
+      border: 1px solid #23232c;
+      border-radius: 999px;
+      padding: 10px 16px;
+      max-width: 520px;
+      color: var(--muted);
+    }
+
+    .header-card {
+      background: linear-gradient(180deg, rgba(255, 120, 210, 0.28), rgba(20, 20, 24, 0.7));
+      border: 1px solid #2b2b35;
+      border-radius: 22px;
+      padding: 26px;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .cover-box {
+      width: 160px;
+      height: 160px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #ff9de0, #89d9ff);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .header-meta {
+      display: grid;
+      align-content: center;
+      gap: 10px;
+    }
+
+    .header-meta small {
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      color: rgba(247, 247, 251, 0.65);
+      font-weight: 600;
+    }
+
+    .header-meta h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .header-meta p {
+      margin: 0;
+      color: rgba(247, 247, 251, 0.75);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 18px 0 10px;
+    }
+
+    .play-btn {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #0b0b0c;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      box-shadow: 0 12px 30px rgba(30, 215, 96, 0.35);
+    }
+
+    .ghost-btn {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid #2b2b35;
+      color: var(--text);
+      background: transparent;
+    }
+
+    .table {
+      margin-top: 14px;
+      background: var(--panel);
+      border-radius: 18px;
+      border: 1px solid #1d1d25;
+      overflow: hidden;
+    }
+
+    .table-head, .row {
+      display: grid;
+      grid-template-columns: 42px 1.4fr 1fr 140px;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 18px;
+    }
+
+    .table-head {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: var(--panel-2);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .row {
+      border-bottom: 1px solid var(--line);
+      transition: background 0.2s ease;
+    }
+
+    .row:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .thumb {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ff9de0, #89d9ff);
+      overflow: hidden;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .song h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .song small {
+      color: var(--muted);
+    }
+
+    .album {
+      color: rgba(247, 247, 251, 0.7);
+      font-size: 14px;
+    }
+
+    .actions audio {
+      width: 100%;
+    }
+
+    .footer-player {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 72px;
+      background: rgba(9, 9, 11, 0.9);
+      border-top: 1px solid #1f1f27;
+      display: grid;
+      align-items: center;
+      padding: 0 22px;
+      color: var(--muted);
+      font-size: 13px;
+      backdrop-filter: blur(12px);
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        grid-auto-flow: column;
+        justify-content: center;
+        border-right: none;
+        border-bottom: 1px solid #14141a;
+      }
+      .main {
+        padding: 18px 16px 100px;
+      }
+      .header-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .cover-box {
+        margin: 0 auto;
+      }
+      .table-head, .row {
+        grid-template-columns: 30px 1fr 1fr;
+      }
+      .actions {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .table-head, .row {
+        grid-template-columns: 30px 1fr;
+      }
+      .album {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="side-logo">AH</div>
+      <div class="side-btn">♪</div>
+      <div class="side-btn">+</div>
+      <div class="side-btn">♡</div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="search">What do you want to play?</div>
+        <div class="ghost-btn">Ainaa Hadi</div>
+      </div>
+
+      <section class="header-card">
+        <div class="cover-box"></div>
+        <div class="header-meta">
+          <small>Public Playlist</small>
+          <h1>Ainaa's Covers</h1>
+          <p>my personal song covers • curated by Ainaa • updated anytime</p>
+        </div>
+      </section>
+
+      <div class="controls">
+        <div class="play-btn">▶</div>
+        <button class="ghost-btn">Shuffle</button>
+        <button class="ghost-btn">Share</button>
+      </div>
+
+      <section class="table">
+        <div class="table-head">
+          <div>#</div>
+          <div>Title</div>
+          <div>Album</div>
+          <div>Play</div>
+        </div>
+        <div id="trackList"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="footer-player">Now playing • Choose a track above</div>
+
+  <script>
+    const trackList = document.getElementById("trackList");
+    const storedTracks = [
+      {
+        title: "Dekat Di Hati",
+        artist: "Ainaa",
+        audioUrl: "audio/_Dekat_Di_Hati.mp3",
+        coverUrl: "covers/dekat di hati.jpeg"
+      },
+      {
+        title: "Terima Kasih Cinta",
+        artist: "Ainaa Hadi",
+        audioUrl: "audio/Terima Kasih Cinta Short.m4a",
+        coverUrl: "covers/terima kasih cinta.jpeg"
+      },
+      {
+        title: "Dan",
+        artist: "Ainaa Hadi",
+        audioUrl: "audio/_Dan_sheila_on_7.mp3",
+        coverUrl: "covers/dan.jpeg"
+      },
+      {
+        title: "Sesuatu Di Jogja",
+        artist: "Ainaa Hadi",
+        audioUrl: "audio/Sesuatu di jogja.mpeg",
+        coverUrl: "covers/sesuatu di jogja.jpeg"
+      },
+      {
+        title: "Cinta Ini Membunuhku",
+        artist: "Ainaa Hadi",
+        audioUrl: "audio/_cinta_ini_membunuhku_11_Jul_2022_919_am.mp3",
+        coverUrl: "covers/cinta ini membunuhku.jpeg"
+      },
+      {
+        title: "Dia Dia Dia",
+        artist: "Ainaa Hadi",
+        audioUrl: "audio/_Dia_Dia_Dia.mp3",
+        coverUrl: "covers/dia dia dia.jpeg"
+      }
+    ];
+
+    function createRow(track, index) {
+      const row = document.createElement("div");
+      row.className = "row";
+      row.innerHTML = `
+        <div>${index + 1}</div>
+        <div class="title">
+          <div class="thumb">${track.coverUrl ? `<img src="${track.coverUrl}" alt="${track.title} cover">` : ""}</div>
+          <div class="song">
+            <h3>${track.title}</h3>
+            <small>${track.artist}</small>
+          </div>
+        </div>
+        <div class="album">Song Covers</div>
+        <div class="actions"><audio controls src="${track.audioUrl}"></audio></div>
+      `;
+      trackList.appendChild(row);
+    }
+
+    if (storedTracks.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "row";
+      empty.innerHTML = `<div>—</div><div class="title"><div class="song"><h3>No covers yet</h3><small>Add MP3 files to assets/audio.</small></div></div><div class="album"></div><div></div>`;
+      trackList.appendChild(empty);
+    } else {
+      storedTracks.forEach((track, index) => createRow(track, index));
+    }
+  </script>
+</body>
+</html>
